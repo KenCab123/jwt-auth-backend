@@ -72,6 +72,16 @@ auth.post("/register", async (req, res) => {
   }
 });
 
+auth.get('/logout', async (_req, res) => {
+  try {
+    res.clearCookie('token')
+    res.status(200).json({ message: 'Logged out successfully' })
+  } catch (err) {
+    console.log(err)
+  }
+})
+
+
 auth.get("/check-auth", authenticateToken, (req, res) => {
   // Assuming authenticateToken middleware adds user info to req.user
 
